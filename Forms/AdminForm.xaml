@@ -1,0 +1,41 @@
+﻿<Window x:Class="ChanceryStore.AdminForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore"
+        mc:Ignorable="d"
+        Title="Admin" Height="450" Width="800" Style="{DynamicResource backgroundStyle}" WindowStartupLocation="CenterScreen">
+
+
+    <Grid>
+
+        <Menu    HorizontalAlignment="Stretch" Height="54" VerticalAlignment="Top" >
+            <Menu.Background   >
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Menu.Background>
+            <MenuItem Name="mi1"  Height ="36" Width ="133" Margin="0,6,0,0"  BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" Background="{x:Null}" Click="mi1_Click" >
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="134">
+                        <Ellipse x:Name="imageMainEl" Margin="5,0,0,0" Height="35" Width ="35">
+                        </Ellipse>
+                        <TextBlock x:Name="FirstNameMainTbl" Width="74" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Height="18"><Run Text="Профиль"/></TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem  >
+            <MenuItem Name="mi2" Margin="0,6,0,0" Click ="Users_Click" Height ="36" Width ="98" HorizontalContentAlignment="Center"  BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Header="Сотрудники"  />
+            <MenuItem Name="mi3"  Margin="0,6,0,0" Click ="Products_Click"  Header="Товары" Height ="36" Width ="70" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi4"  Margin="0,6,0,0" Header="Настройки" Height ="36" Width ="92" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Click="Settings_Click"/>
+            <MenuItem Name="mi5" Margin="0,6,0,0"  Click ="Timetable_Click" Header="Расписание" Height ="36" Width ="103" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi6" Margin="0,6,0,0"  Click ="Purchase_Click" Header="Закупки" Height ="36" Width ="76" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem  Name="mi7" Margin="0,6,0,0"  Click ="Order_Click" Header="Заказы" Height ="36" Width ="71" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi8"  Margin="0,6,0,0" Click ="Purchase_Click" Header="Тесты" Height ="36" Width ="62" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem  Name="mi9"  Margin="0,6,0,0" Click ="Exit_Click" Header="Выйти" Height ="36" Width ="59" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+        </Menu>
+
+        <Grid Name="mainGr" Margin="0,59,0.333,-0.333">
+
+        </Grid>
+    </Grid>
+    
+</Window>

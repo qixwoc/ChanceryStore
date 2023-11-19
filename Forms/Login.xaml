@@ -1,0 +1,218 @@
+﻿<Window x:Class="ChanceryStore.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800" Style="{DynamicResource backgroundStyle}" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        MouseDown="Window_MouseDown" >
+
+    <Window.Resources>
+        <Style TargetType="Rectangle"  x:Key="RectMessageStyle">
+            <Setter Property="Fill" Value="#FFE4FFF2"></Setter>
+            <Setter Property="RadiusY"  Value="8.0"></Setter>
+            <Setter Property="RadiusX"  Value="8.0"></Setter>
+            <Setter Property="StrokeThickness"  Value="0"></Setter>
+        </Style>
+
+        <ControlTemplate  x:Key="btthgTemplate">
+            <Border CornerRadius="10"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}"
+                    Height="{TemplateBinding Height}"
+                    Width="{TemplateBinding Width}" >
+                <ContentControl 
+                    Margin="5.333,5.333,0,0"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding TextBox.Text}" Height="20" Width="140" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsFocused" Value="true">
+                    <Setter Property="BorderBrush" Value="#FF055DD8"></Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="White"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF4ACB99"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF4ACB99"/>
+
+        <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate   TargetType="{x:Type TextBox}">
+                        <Border  x:Name="border" CornerRadius="8" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer Margin="4" x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true"/>
+                            <Trigger Property="IsMouseOver" Value="true"/>
+                            <Trigger Property="IsPressed" Value="true"/>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
+                <ColumnDefinition Width="25"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image  Margin="5,0,0,0" Grid.Column="0" Height="19" Width="20"  HorizontalAlignment="Left" Panel.ZIndex="5" Source="icons8-color-pencils-64.png">
+
+            </Image>
+            <TextBlock Margin="30,0,0,0" Text="Авторизация" FontSize="10" Foreground="DimGray" 
+                           FontFamily="Century Gothic"
+                           Grid.Column="0" VerticalAlignment="Center" >
+            </TextBlock>
+            <Button  Name="btnMinimize" BorderThickness="0" 
+                         Content="-" Foreground="White"
+                        FontSize="16" FontFamily="Century Gothic" Cursor="Hand" Grid.Column="1"
+                        Click="btnMinimize_Click" Background="#FF4ACB99">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Aqua"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button  Name="btnMaximized" BorderThickness="1,0,0,0" 
+                         Content="☐" Foreground="White"
+                        FontSize="16" FontFamily="Century Gothic" Cursor="Hand" Grid.Column="2"
+                        Click="btnMaximized_Click" Background="#FF4ACB99" BorderBrush="Gray"/>
+            <Button  Name="btnClosed" BorderThickness="1,0,0,0" 
+                         Content="✕" Foreground="White"
+                        FontSize="16" FontFamily="Century Gothic" Cursor="Hand" Grid.Column="3"
+                        Click="btnClosed_Click" Background="#FF4ACB99" BorderBrush="Gray">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFFF3EE3"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Blue"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                </Button.Style>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition  ></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel  Grid.Column="1" Orientation="Vertical" >
+                <TextBlock Margin="0,50,0,0" HorizontalAlignment="Center" FontWeight="Medium" TextWrapping="Wrap" Text="Авторизация" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="25" Foreground="#FF509071" />
+                <Grid Margin="0,15,0,0">
+                    <Rectangle x:Name="LoginPromt"  Style="{DynamicResource RectMessageStyle}" HorizontalAlignment="Center" Height="51"  Width="212" />
+                    <TextBlock x:Name="LoginPromtTb" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Неверно введен логин или пароль"  FontSize="12" Height="37" Width="152" TextAlignment="Center"/>
+                </Grid>
+
+                <StackPanel Margin="0,15,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Margin="0,0,15,0" Style="{DynamicResource lbl_Tblock_Style}" Content="Логин" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="#FF509071" FontSize="14" FontFamily="Century Gothic"/>
+                    <TextBox x:Name="loginTb" VerticalContentAlignment="Center"  Height="35"  TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Style="{DynamicResource TextBoxStyle2}" BorderBrush="{x:Null}" BorderThickness="2" FontSize="15" FontFamily="Century Gothic" SelectionBrush="#FF218F5D" Text="qwwerty" />
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Margin="0,0,10,0" Style="{DynamicResource lbl_Tblock_Style}" Content="Пароль" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="#FF509071" FontFamily="Century Gothic" FontSize="14"/>
+                    <Grid  >
+                        <TextBox x:Name="passwordTb" Padding="0,0,25,0" VerticalContentAlignment="Center" HorizontalAlignment="Center" Height="35"  TextWrapping="Wrap" VerticalAlignment="Top" Width="158" Style="{DynamicResource TextBoxStyle2}" BorderBrush="{x:Null}" BorderThickness="2" FontSize="15" FontFamily="Century Gothic" Visibility="Hidden" TextChanged="passwordTb_TextChanged"/>
+                        <PasswordBox Padding="0,0,25,0" x:Name="passwordB"  VerticalContentAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="35" Width="158" Style="{DynamicResource PasswordBoxStyle1}" BorderBrush="{x:Null}" BorderThickness="2" FontFamily="Century Gothic" FontSize="17" SelectionBrush="#FF218F5D" Password="qwwerty" PasswordChanged="passwordB_PasswordChanged" />
+                        <Button x:Name="visibleBtn" Cursor="Hand" Margin="129,5,5,5.667" Style="{DynamicResource btnStyle}" Content="👁" Template="{DynamicResource btnTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Height="26" FontSize="14" Click="visibleBtn_Click"></Button>
+
+                    </Grid>
+                </StackPanel>
+                <Button  Margin="0,55,0,0" x:Name="loginBtn" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate}"   VerticalAlignment="Center" HorizontalAlignment="Center" Width="160" Height="44"  Content="Войти" Click="loginBtn_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="4" Margin="0.333,0,0.334,0" >
+                <Button x:Name="registrationPromtBtn" Margin="0,9,9,0" Content="Регистрация" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="96" Style="{DynamicResource ButtonStyle2}" Background="#FFBBE6D1" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="30" FontFamily="Century Gothic" Click="registrationPromtBtn_Click" BorderThickness="0"/>
+
+
+
+            </StackPanel>
+            <Grid x:Name="registrationPromt" Width="240"  Grid.ColumnSpan="2" Margin="390.333,39,4.333,322.667" Visibility="Hidden" Grid.Column="1" Height="57" >
+                <Rectangle  Style="{DynamicResource RectMessageStyle}" HorizontalAlignment="Center" Height="53"  VerticalAlignment="Center" Width="233" />
+                <TextBlock x:Name="registrationPromtTb" Style="{DynamicResource lbl_Tblock_Style}"    TextWrapping="Wrap" Text="Зарегистрировать пользователя может только администратор" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="12" Height="39" Width="196" />
+            </Grid>
+        </Grid>
+
+    </Grid>
+
+</Window>

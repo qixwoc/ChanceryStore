@@ -1,0 +1,38 @@
+﻿<Window x:Class="ChanceryStore.EditUserForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore"
+        mc:Ignorable="d"
+        Title="Изменить пользователя" Height="487.666" Width="434.382" Style="{DynamicResource backgroundMiniStyle}" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Ellipse x:Name="imageEllipse" Margin="175,32,171,343" Stretch="UniformToFill" Fill="Black" />
+        <Button x:Name="imageBtn" Style="{DynamicResource ButtonStyle2}" Content="выбрать изображение" HorizontalAlignment="Left" Margin="138,120,0,0"  Foreground="#FF39795A" FontSize="12" VerticalAlignment="Top" Width="152" Height="23" Click="imageBtn_Click" Background="#FFA8D9C1"  FontFamily="Century Gothic" BorderBrush="{x:Null}"/>
+
+        <TextBox x:Name="firstNameTb" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="96" Height="21" Margin="183,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" BorderBrush="{x:Null}" FontSize="11"/>
+        <TextBox x:Name="lastNameTb" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="96" Height="21" Margin="183,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="11" BorderBrush="{x:Null}"/>
+        <TextBox x:Name="loginTb" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="96" Height="21" Margin="183,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="11" BorderBrush="{x:Null}"/>
+        <Button x:Name="resetPasswordBtn" Template="{DynamicResource btnTemplate}" Style="{DynamicResource lbl_Tblock_Style}" Content="сбросить пароль" Margin="185,239,149,194" BorderBrush="{x:Null}" Background="#FFA8D9C1" Foreground="#FF39795A" FontSize="9" Padding="1" Click="resetPasswordBtn_Click"/>
+        <TextBox x:Name="passwordTb" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="96" Height="21" Margin="183,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="11" BorderBrush="{x:Null}" Visibility="Collapsed"/>
+        <ComboBox x:Name="typeCb"  HorizontalAlignment="Left" Margin="185,271,0,0" VerticalAlignment="Top"  BorderBrush="{x:Null}" Width="94" Height="18" Background="White" Style="{DynamicResource ComboBoxStyle1}" FontFamily="Century Gothic"/>
+        <DatePicker x:Name="dateOfBirthDp" Style="{DynamicResource TextBoxStyle}" HorizontalAlignment="Left" Margin="184,295,0,0" VerticalAlignment="Top" Width="110" BorderBrush="{x:Null}" Height="26" FontSize="12" FontFamily="Century Gothic"/>
+
+        <Label Content="* обязательное для заполнения поле" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Left" Margin="105,6,0,0" VerticalAlignment="Top" Foreground="#FF39795A"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="282,154,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontFamily="Century Gothic" Foreground="#FF2C5A27"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="282,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontFamily="Century Gothic" Foreground="#FF2C5A27"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="286,268,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontFamily="Century Gothic" Foreground="#FF2C5A27"/>
+        <Label x:Name="typePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left" Margin="304,237,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827"/>
+        <Label x:Name="firstNamePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left" Margin="302,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827"/>
+        <Label x:Name="lastNamePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left" Margin="302,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827"/>
+        <Label Content="Имя"  Style="{DynamicResource lbl_Tblock_Style}" HorizontalAlignment="Left" Margin="129,153,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Content="Фамилия" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Left" Margin="104,178,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Content="Логин" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Left" Margin="118,204,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Content="Пароль" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Left" Margin="110,231,0,0" VerticalAlignment="Top" FontFamily="Century Gothic" Foreground="#FF39795A" FontSize="12" Visibility="Collapsed"/>
+        <Label Content="Роль"  Style="{DynamicResource lbl_Tblock_Style}" HorizontalAlignment="Left" Margin="125,269,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.558,0.231" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Content="Дата рождения" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Left" Margin="70,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.558,0.231" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Button x:Name="okBtn" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate}" Content="✔ ок" HorizontalAlignment="Left" Margin="163,353,0,0" VerticalAlignment="Top" Width="110" Click="okBtn_Click" Height="31" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Content="Пароль" Style="{DynamicResource lbl_Tblock_Style}"  HorizontalAlignment="Left" Margin="117,236,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33328.57
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChanceryStore", "ChanceryStore.csproj", "{A8060294-CC96-4748-A09C-5CA82754BBDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChanceryStoreMVC", "..\ChanceryStoreMVC\ChanceryStoreMVC.csproj", "{0E09EAA9-88DE-4582-AE96-C81B8B0A7833}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A8060294-CC96-4748-A09C-5CA82754BBDF} = {A8060294-CC96-4748-A09C-5CA82754BBDF}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8060294-CC96-4748-A09C-5CA82754BBDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8060294-CC96-4748-A09C-5CA82754BBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8060294-CC96-4748-A09C-5CA82754BBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8060294-CC96-4748-A09C-5CA82754BBDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E09EAA9-88DE-4582-AE96-C81B8B0A7833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E09EAA9-88DE-4582-AE96-C81B8B0A7833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E09EAA9-88DE-4582-AE96-C81B8B0A7833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E09EAA9-88DE-4582-AE96-C81B8B0A7833}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FFD293B-B0C6-439C-B0CE-23C57A1217A6}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,198 @@
+﻿<Window x:Class="ChanceryStore.Forms.OrdersForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore.Forms"
+        mc:Ignorable="d"
+        Title="Orders" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <Grid HorizontalAlignment="Stretch" >
+                <Rectangle  HorizontalAlignment="Stretch" >
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <StackPanel Margin="3" Orientation="Horizontal"  HorizontalAlignment="Left">
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="№ " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <TextBlock FontSize="11" FontFamily="Century Gothic" Margin="5" Text="{Binding Path=Id}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Статус " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <Grid Height="18" >
+                            <TextBlock Name="tbStatus" FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Status}" HorizontalAlignment="Center" Panel.ZIndex="1" ></TextBlock>
+                            <Border Name="bClorType" CornerRadius="3" Background="#FFFFAEAE"></Border>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Дата: " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <TextBlock FontSize="11" FontFamily="Century Gothic" Margin="5" Text="{Binding Path=DateTimeView}"  HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Клиент: " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Client.FirstName}" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Client.LastName}" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Товар:" HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <TextBlock FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Product.Name}" HorizontalAlignment="Center" ></TextBlock>
+                    </StackPanel>
+
+                    <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="AddArchieveBtn" Margin="5" Content="в архив" Tag="{Binding Path=Id}" Click="addArchieveBtn_Click" BorderBrush="{x:Null}" Width="60" Height="23" Background="#FF9CC4B1" Foreground="#FF483F3F" FontSize="11" Cursor="Hand" ></Button>
+                </StackPanel>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Outdate}" Value="YES">
+                    <Setter TargetName="AddArchieveBtn" Property="Content" Value="восстановить из архива"></Setter>
+                    <Setter TargetName="AddArchieveBtn" Property="Width" Value="150"></Setter>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Status}" Value="Canceled">
+                    <Setter TargetName="bClorType" Property="Background" Value="#FFE0BDBD"></Setter>
+                    <Setter TargetName="tbStatus" Property="Text" Value="Отменено"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Status}" Value="Created">
+                    <Setter TargetName="bClorType" Property="Background" Value="#FFE6D4BB"></Setter>
+                    <Setter TargetName="tbStatus" Property="Text" Value="Создано"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Status}" Value="InProgress">
+                    <Setter TargetName="bClorType" Property="Background" Value="#FFE6E6BB"></Setter>
+                    <Setter TargetName="tbStatus" Property="Text" Value="В процессе"></Setter>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Status}" Value="Ready">
+                    <Setter TargetName="bClorType" Property="Background" Value="#FFBBE6D1"></Setter>
+                    <Setter TargetName="tbStatus" Property="Text" Value="Готово к выдаче"></Setter>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Status}" Value="Completed">
+                    <Setter TargetName="bClorType" Property="Background" Value="#FFBBDBE6"></Setter>
+                    <Setter TargetName="tbStatus" Property="Text" Value="Завершено"></Setter>
+                </DataTrigger>
+
+            </DataTemplate.Triggers>
+
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="listTemplateMini">
+            <Grid HorizontalAlignment="Stretch" >
+                <Rectangle  Width="500" >
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <StackPanel Margin="3" Orientation="Horizontal"  HorizontalAlignment="Left">
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="№ " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <TextBlock FontSize="11" FontFamily="Century Gothic" Margin="5" Text="{Binding Path=Id}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+
+
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Дата: " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <TextBlock FontSize="11" FontFamily="Century Gothic" Margin="5" Text="{Binding Path=DateTimeView}"  HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Клиент: " HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Client.FirstName}" HorizontalAlignment="Center"></TextBlock>
+                            <TextBlock FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Client.LastName}" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+
+
+
+                    <StackPanel Margin="5" >
+                        <TextBlock FontSize="10" FontFamily="Century Gothic" Padding="5" Text="Товар:" HorizontalAlignment="Center" Foreground="#FF6C6C6C"></TextBlock>
+                        <TextBlock FontSize="11" FontFamily="Century Gothic" Padding="5" Text="{Binding Path=Product.Name}" HorizontalAlignment="Center" ></TextBlock>
+                    </StackPanel>
+
+                    <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="AddArchieveBtn" Margin="5" Content="в архив" Tag="{Binding Path=Id}" Click="addArchieveBtn_Click" BorderBrush="{x:Null}" Width="60" Height="23" Background="#FF9CC4B1" Foreground="#FF483F3F" FontSize="11" Cursor="Hand" ></Button>
+                </StackPanel>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Outdate}" Value="YES">
+                    <Setter TargetName="AddArchieveBtn" Property="Content" Value="восстановить из архива"></Setter>
+                    <Setter TargetName="AddArchieveBtn" Property="Width" Value="150"></Setter>
+                </DataTrigger>
+
+
+            </DataTemplate.Triggers>
+
+
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid Margin="50,90,50,90" Panel.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" x:Name="AllBtn" Content="Все"  HorizontalAlignment="Stretch"  VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle3}" Background="#FFC6BBE6" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="23" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+            <ListBox Grid.Column="0" Margin="0,22,0,0" Name="AllLb" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" ItemTemplate="{StaticResource listTemplate}"/>
+
+            <GridSplitter Margin="0,22,0,0"  Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FFD7D7D7"></GridSplitter>
+
+
+            <Button Grid.Column="2" x:Name="CanceledBtn" Content="Отменено" HorizontalAlignment="Stretch"  VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle3}" Background="#FFE0BDBD" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="23" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+            <ListBox Grid.Column="2" Margin="0,22,0,0"  Name="CanceledLb"  HorizontalAlignment="Stretch"   VerticalAlignment="Stretch"  Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" ItemTemplate="{StaticResource listTemplateMini}"/>
+
+            <GridSplitter Margin="0,22,0,0"  Grid.Column="3" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FFD5D5D5"></GridSplitter>
+
+            <ListBox  Name="CreatedLb"  Grid.Column="4" Margin="0,22,0,0" HorizontalAlignment="Stretch"   VerticalAlignment="Stretch"  BorderBrush="#FFF2F2F2" Background="#FFF2F2F2" ItemTemplate="{StaticResource listTemplateMini}" />
+            <Button  Grid.Column="4" x:Name="outdateBtn_Copy6" Content="Создано"  HorizontalAlignment="Stretch"  VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle3}" Background="#FFE6D4BB" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="23" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+
+            <GridSplitter Margin="0,22,0,0"  Grid.Column="5" ShowsPreview="False" Width="3"  HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FFD7D7D7"></GridSplitter>
+
+            <ListBox  Name="InProgressLb"  Grid.Column="6" Margin="0,22,0,0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" ItemTemplate="{StaticResource listTemplateMini}" />
+            <Button  Grid.Column="6" x:Name="outdateBtn_Copy8" Content="В процессе" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle3}" Background="#FFE6E6BB" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="23" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+
+            <GridSplitter Margin="0,22,0,0"  Grid.Column="7" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FFD7D7D7"></GridSplitter>
+
+            <ListBox Name="ReadyLb"  Margin="0,22,0,0" Grid.Column="8" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" ItemTemplate="{StaticResource listTemplateMini}" />
+            <Button Grid.Column="8" x:Name="outdateBtn_Copy7" Content="Готово к выдаче"  HorizontalAlignment="Stretch"  VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle3}" Background="#FFBBE6D1" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="23" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+
+
+            <GridSplitter Margin="0,22,0,0"  Grid.Column="9" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FFD7D7D7"></GridSplitter>
+
+
+            <ListBox Name="CompletedLb"  Grid.Column="10" Margin="0,22,0,0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFF2F2F2" BorderBrush="#FFF2F2F2" ItemTemplate="{StaticResource listTemplateMini}"/>
+            <Button Grid.Column="10" x:Name="outdateBtn_Copy9" Content="Завершено"  HorizontalAlignment="Stretch" VerticalAlignment="Top"  Style="{DynamicResource ButtonStyle3}" Background="#FFBBDBE6" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="23" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+
+        </Grid>
+
+
+        <Button x:Name="actualBtn1" Content="Актуальное" HorizontalAlignment="Left" Margin="61,328,0,0" VerticalAlignment="Top" Width="65" Style="{DynamicResource ButtonStyle4}" Background="#FF6EA78B" BorderBrush="{x:Null}" Foreground="White" Height="18" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+        <Button x:Name="outdateBtn1" Content="Архив" HorizontalAlignment="Left" Margin="126,328,0,0" VerticalAlignment="Top" Width="45" Style="{DynamicResource ButtonStyle4}" Background="#FFBBE6D1" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="18" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+
+        <Label Content="🔍" HorizontalAlignment="Left" Margin="34,24,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF808B7C" Height="30" Width="33" Panel.ZIndex="1"/>
+        <Button Content="Фильтр" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate2}" HorizontalAlignment="Left" Margin="179,29,0,0" VerticalAlignment="Top" Width="67" Height="18" FontSize="12"/>
+        <TextBox x:Name="findUserTb" Padding="20,0,0,0" Style="{DynamicResource TextBoxStyle2}"  HorizontalAlignment="Left" Height="26" Margin="33,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" BorderBrush="#FFD8D8D8"/>
+    </Grid>
+</Window>

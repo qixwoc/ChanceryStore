@@ -1,0 +1,31 @@
+﻿<Window x:Class="ChanceryStore.AddProductForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore"
+        mc:Ignorable="d"
+        Title="AddProductForm" Height="400" Width="420.958" Style="{DynamicResource backgroundMiniStyle}" WindowStartupLocation="CenterOwner">
+    <Grid RenderTransformOrigin="0.514,0.507">
+        <TextBox x:Name="NameTb" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="94" Height="21" Margin="183,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+        <TextBox x:Name="PriceTb" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="94" Height="21" Margin="183,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+        <TextBox x:Name="AmountTb" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="94" Height="21" Margin="183,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+        <TextBox x:Name="barcodeTb" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="94" Height="21" Margin="183,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+        <Button x:Name="imageBtn" Style="{DynamicResource ButtonStyle2}" Content="выбрать изображение" HorizontalAlignment="Left" Margin="138,124,0,0" VerticalAlignment="Top" Width="152" Height="23" Click="imageBtn_Click" Background="#FFA8D9C1" Foreground="#FF3F512D" FontSize="12" FontFamily="Century Gothic" BorderBrush="{x:Null}"/>
+        <Label Style="{DynamicResource lbl_Tblock_Style}" Content="* обязательное для заполнения поле" HorizontalAlignment="Left" Margin="104,4,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="282,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontFamily="Century Gothic" Foreground="#FF2C5A27"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="284,241,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontFamily="Century Gothic" Foreground="#FF2C5A27"/>
+        <Label x:Name="providerPromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left" Margin="299,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontSize="12"/>
+        <Label x:Name="NamePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left" Margin="299,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontSize="12"/>
+        <Label x:Name="barcodePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left" Margin="299,239,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.924,0.827" FontSize="12"/>
+        <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Название" HorizontalAlignment="Left" Margin="106,163,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Цена" HorizontalAlignment="Left" Margin="132,188,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Количество" HorizontalAlignment="Left" Margin="98,214,0,0" VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+        <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Штрихкод" HorizontalAlignment="Left" Margin="107,241,0,0" VerticalAlignment="Top" FontFamily="Century Gothic" Foreground="#FF39795A" FontSize="12"/>
+        <Button x:Name="okBtn" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate}" Content="✔ ок" HorizontalAlignment="Left" Margin="153,315,0,0" VerticalAlignment="Top" Width="110" Click="okBtn_Click" Height="31" FontSize="12" FontFamily="Century Gothic"/>
+        <Image x:Name="imageProduct" HorizontalAlignment="Left" Height="67" Margin="172,39,0,0" VerticalAlignment="Top" Width="91" Source="/images/pencilProduct.png"/>
+        <ComboBox x:Name="providerCb" ItemsSource="{Binding Provider}" DisplayMemberPath="Name" SelectedValuePath ="Id"  HorizontalAlignment="Left" Margin="197,274,0,0" VerticalAlignment="Top" Width="88" Style="{DynamicResource ComboBoxStyle1}" FontFamily="Century Gothic"/>
+        <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Поставщик" HorizontalAlignment="Left" Margin="106,271,0,0" VerticalAlignment="Top" FontFamily="Century Gothic" Foreground="#FF39795A" FontSize="12"/>
+
+    </Grid>
+</Window>

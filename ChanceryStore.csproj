@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8060294-CC96-4748-A09C-5CA82754BBDF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ChanceryStore</RootNamespace>
+    <AssemblyName>ChanceryStore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icons8-color-pencils-64.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammer.MDIContainer.Control, Version=2.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MdiContainerWPF.2.8.4\lib\Hammer.MDIContainer.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Connection.cs" />
+    <Compile Include="Forms\OrdersForm.xaml.cs">
+      <DependentUpon>OrdersForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Products\ContentControl.xaml.cs">
+      <DependentUpon>ContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SqlEntity\ProductSql.cs" />
+    <Compile Include="WordFunc.cs" />
+    <Compile Include="Forms\TimetableWindow\AddTimetableWindow.xaml.cs">
+      <DependentUpon>AddTimetableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DocumentWindow.xaml.cs">
+      <DependentUpon>DocumentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IEntity.cs" />
+    <Compile Include="Forms\Products\AddProductForm.xaml.cs">
+      <DependentUpon>AddProductForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Notifications.xaml.cs">
+      <DependentUpon>Notifications.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PurchaseWindow.xaml.cs">
+      <DependentUpon>PurchaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TimetableWindow\EmployeeTimetableDayWindow.xaml.cs">
+      <DependentUpon>EmployeeTimetableDayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestWindow\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestWindow\TestWindowBig.xaml.cs">
+      <DependentUpon>TestWindowBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TimetableWindow\TimeTableDayWindow.xaml.cs">
+      <DependentUpon>TimeTableDayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TimetableWindow\TimetableWindow.xaml.cs">
+      <DependentUpon>TimetableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestWindow\EditTestWindow.xaml.cs">
+      <DependentUpon>EditTestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TestWindow\TestsWindows.xaml.cs">
+      <DependentUpon>TestsWindows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageFunc.cs" />
+    <Compile Include="Forms\Users\AddUserForm.xaml.cs">
+      <DependentUpon>AddUserForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Forms\Products\EditProductForm.xaml.cs">
+      <DependentUpon>EditProductForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Users\EditUserForm.xaml.cs">
+      <DependentUpon>EditUserForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305130157443_InitialCreate.cs" />
+    <Compile Include="Migrations\202305130157443_InitialCreate.designer.cs">
+      <DependentUpon>202305130157443_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131101123_AddCompanyMigration.cs" />
+    <Compile Include="Migrations\202305131101123_AddCompanyMigration.designer.cs">
+      <DependentUpon>202305131101123_AddCompanyMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131313318_AddCompanyMigration1.cs" />
+    <Compile Include="Migrations\202305131313318_AddCompanyMigration1.designer.cs">
+      <DependentUpon>202305131313318_AddCompanyMigration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131320109_AddCompanyMigration2.cs" />
+    <Compile Include="Migrations\202305131320109_AddCompanyMigration2.designer.cs">
+      <DependentUpon>202305131320109_AddCompanyMigration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131323186_AddCompanyMigration3.cs" />
+    <Compile Include="Migrations\202305131323186_AddCompanyMigration3.designer.cs">
+      <DependentUpon>202305131323186_AddCompanyMigration3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131325502_AddCompanyMigration4.cs" />
+    <Compile Include="Migrations\202305131325502_AddCompanyMigration4.designer.cs">
+      <DependentUpon>202305131325502_AddCompanyMigration4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131640385_AddCompanyMigration5.cs" />
+    <Compile Include="Migrations\202305131640385_AddCompanyMigration5.designer.cs">
+      <DependentUpon>202305131640385_AddCompanyMigration5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131920507_AddCompanyMigration6.cs" />
+    <Compile Include="Migrations\202305131920507_AddCompanyMigration6.designer.cs">
+      <DependentUpon>202305131920507_AddCompanyMigration6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131922371_AddCompanyMigration7.cs" />
+    <Compile Include="Migrations\202305131922371_AddCompanyMigration7.designer.cs">
+      <DependentUpon>202305131922371_AddCompanyMigration7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131924319_AddCompanyMigration8.cs" />
+    <Compile Include="Migrations\202305131924319_AddCompanyMigration8.designer.cs">
+      <DependentUpon>202305131924319_AddCompanyMigration8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131926276_AddCompanyMigration9.cs" />
+    <Compile Include="Migrations\202305131926276_AddCompanyMigration9.designer.cs">
+      <DependentUpon>202305131926276_AddCompanyMigration9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305131936197_AddCompanyMigration10.cs" />
+    <Compile Include="Migrations\202305131936197_AddCompanyMigration10.designer.cs">
+      <DependentUpon>202305131936197_AddCompanyMigration10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305141321300_AddCompanyMigration11.cs" />
+    <Compile Include="Migrations\202305141321300_AddCompanyMigration11.designer.cs">
+      <DependentUpon>202305141321300_AddCompanyMigration11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305141324011_AddCompanyMigration12.cs" />
+    <Compile Include="Migrations\202305141324011_AddCompanyMigration12.designer.cs">
+      <DependentUpon>202305141324011_AddCompanyMigration12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305141334088_AddCompanyMigration13.cs" />
+    <Compile Include="Migrations\202305141334088_AddCompanyMigration13.designer.cs">
+      <DependentUpon>202305141334088_AddCompanyMigration13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305141344234_AddCompanyMigration14.cs" />
+    <Compile Include="Migrations\202305141344234_AddCompanyMigration14.designer.cs">
+      <DependentUpon>202305141344234_AddCompanyMigration14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305141404044_AddCompanyMigration15.cs" />
+    <Compile Include="Migrations\202305141404044_AddCompanyMigration15.designer.cs">
+      <DependentUpon>202305141404044_AddCompanyMigration15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305172002102_a.cs" />
+    <Compile Include="Migrations\202305172002102_a.designer.cs">
+      <DependentUpon>202305172002102_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305251837448_e.cs" />
+    <Compile Include="Migrations\202305251837448_e.designer.cs">
+      <DependentUpon>202305251837448_e.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305251843392_f.cs" />
+    <Compile Include="Migrations\202305251843392_f.designer.cs">
+      <DependentUpon>202305251843392_f.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305262256549_g.cs" />
+    <Compile Include="Migrations\202305262256549_g.designer.cs">
+      <DependentUpon>202305262256549_g.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Forms\SettingsForm.xaml.cs">
+      <DependentUpon>SettingsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Category.cs" />
+    <Compile Include="models\Client.cs" />
+    <Compile Include="models\EmploymentTimetable.cs" />
+    <Compile Include="models\EntitiesFunc.cs" />
+    <Compile Include="models\Order.cs" />
+    <Compile Include="models\Product.cs" />
+    <Compile Include="Forms\Products\ProductsForm.xaml.cs">
+      <DependentUpon>ProductsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="models\Provider.cs" />
+    <Compile Include="models\Purchase.cs" />
+    <Compile Include="models\Test.cs" />
+    <Compile Include="models\Timetable.cs" />
+    <Compile Include="models\Type.cs" />
+    <Compile Include="models\User.cs" />
+    <Page Include="Dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\OrdersForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Products\ContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TimetableWindow\AddTimetableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\UserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DocumentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Products\AddProductForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Notifications.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PurchaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TimetableWindow\EmployeeTimetableDayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TestWindow\TestWindowBig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TimetableWindow\TimeTableDayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TimetableWindow\TimetableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Users\AddUserForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AdminForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Products\EditProductForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TestWindow\EditTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Users\EditUserForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TestWindow\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\TestWindow\TestsWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Users\UsersForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Forms\AdminForm.xaml.cs">
+      <DependentUpon>AdminForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Forms\Users\UsersForm.xaml.cs">
+      <DependentUpon>UsersForm.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Forms\SettingsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\Products\ProductsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\SqlEntity\UserSql.cs" />
+    <Compile Include="UserBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Migrations\202305130157443_InitialCreate.resx">
+      <DependentUpon>202305130157443_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131101123_AddCompanyMigration.resx">
+      <DependentUpon>202305131101123_AddCompanyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131313318_AddCompanyMigration1.resx">
+      <DependentUpon>202305131313318_AddCompanyMigration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131320109_AddCompanyMigration2.resx">
+      <DependentUpon>202305131320109_AddCompanyMigration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131323186_AddCompanyMigration3.resx">
+      <DependentUpon>202305131323186_AddCompanyMigration3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131325502_AddCompanyMigration4.resx">
+      <DependentUpon>202305131325502_AddCompanyMigration4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131640385_AddCompanyMigration5.resx">
+      <DependentUpon>202305131640385_AddCompanyMigration5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131920507_AddCompanyMigration6.resx">
+      <DependentUpon>202305131920507_AddCompanyMigration6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131922371_AddCompanyMigration7.resx">
+      <DependentUpon>202305131922371_AddCompanyMigration7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131924319_AddCompanyMigration8.resx">
+      <DependentUpon>202305131924319_AddCompanyMigration8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131926276_AddCompanyMigration9.resx">
+      <DependentUpon>202305131926276_AddCompanyMigration9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305131936197_AddCompanyMigration10.resx">
+      <DependentUpon>202305131936197_AddCompanyMigration10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141321300_AddCompanyMigration11.resx">
+      <DependentUpon>202305141321300_AddCompanyMigration11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141324011_AddCompanyMigration12.resx">
+      <DependentUpon>202305141324011_AddCompanyMigration12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141334088_AddCompanyMigration13.resx">
+      <DependentUpon>202305141334088_AddCompanyMigration13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141344234_AddCompanyMigration14.resx">
+      <DependentUpon>202305141344234_AddCompanyMigration14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305141404044_AddCompanyMigration15.resx">
+      <DependentUpon>202305141404044_AddCompanyMigration15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305172002102_a.resx">
+      <DependentUpon>202305172002102_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305251837448_e.resx">
+      <DependentUpon>202305251837448_e.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305251843392_f.resx">
+      <DependentUpon>202305251843392_f.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305262256549_g.resx">
+      <DependentUpon>202305262256549_g.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\notImageUser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\5555.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\istockphoto-1002140096-612x612.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\hall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Снимок.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\pencilProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\monitor.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sklad\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Forms\icons8-color-pencils-16 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Forms\icons8-color-pencils-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons8-color-pencils-16 %281%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons8-color-pencils-64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Forms\Products\tropical-flowers-pattern-tekstura-fon-background-pattern-flo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\exc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\pdf.png" />
+    <Resource Include="images\word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Forms\tropical-flowers-pattern-tekstura-fon-background-pattern-flo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Forms\TimetableWindow\5555.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Forms\TimetableWindow\tropical-flowers-pattern-tekstura-fon-background-pattern-flo.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,539 @@
+﻿<Window Name="WindowTimetable" x:Class="ChanceryStore.Forms.TestWindow.TimetableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore.Forms.TestWindow"
+        mc:Ignorable="d"
+        Title="TimetableWindow" Height="508" Width="804" Style="{DynamicResource backgroundStyle}" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <GridView x:Key="wer">
+            <GridViewColumn>
+                <GridViewColumn.Header>
+                    <TextBlock   >Время</TextBlock>
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+
+                        <StackPanel  Orientation="Horizontal">
+                            <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                            <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                            <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                            <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn>
+                <GridViewColumn.Header>
+                    <StackPanel>
+                        <TextBlock  >Работник</TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                            <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </GridViewColumn.Header>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel >
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+        </GridView>
+    </Window.Resources>
+    
+    <Grid>
+        <Rectangle Name="BackBlur" HorizontalAlignment="Left" Height="421" Margin="0,0,0,-0.333" VerticalAlignment="Top" Width="793" Panel.ZIndex="2" Visibility="Hidden">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Menu    HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="793">
+            <Menu.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Menu.Background>
+            <MenuItem Name="mi1"  Height ="36" Width ="133" Margin="0,6,0,0"  BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" Background="{x:Null}"  >
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="134">
+                        <Ellipse x:Name="imageMainEl" Margin="5,0,0,0" Height="35" Width ="35">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="tropical-flowers-pattern-tekstura-fon-background-pattern-flo.jpg"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock x:Name="FirstNameMainTbl" Width="74" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Height="18"><Run Text="Анна"/></TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem  >
+            <MenuItem Name="mi2" Margin="0,6,0,0"  Height ="36" Width ="98" HorizontalContentAlignment="Center"  BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Header="Сотрудники"  />
+            <MenuItem Name="mi3"  Margin="0,6,0,0"  Header="Товары" Height ="36" Width ="70" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" />
+            <MenuItem Name="mi4"  Margin="0,6,0,0" Header="Настройки" Height ="36" Width ="92" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" />
+            <MenuItem Name="mi5" Margin="0,6,0,0" Background="#FF749487" Foreground="White"  Header="Расписание" Height ="36" Width ="103" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi6" Margin="0,6,0,0"   Header="Закупки" Height ="36" Width ="76" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem  Name="mi7" Margin="0,6,0,0"   Header="Заказы" Height ="36" Width ="71" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi8"  Margin="0,6,0,0"  Header="Тесты" Height ="36" Width ="62" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem  Margin="0,6,0,0"  Header="Выйти" Height ="36" Width ="59" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+        </Menu>
+        <TextBlock HorizontalAlignment="Left" Margin="82,112,0,0" TextWrapping="Wrap" Text="понедельник" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+
+        <Button Tag="NotEdit"  Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtnMon" Margin="0,112,578.333,346.667" Content="⤡"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+
+        <TextBlock HorizontalAlignment="Left" Margin="359,115,0,0" TextWrapping="Wrap" Text="вторник" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="92,295,0,0" TextWrapping="Wrap" Text="четверг" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="269,295,0,0" TextWrapping="Wrap" Text="пятница" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="447,298,0,0" TextWrapping="Wrap" Text="суббота" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="631,298,0,0" TextWrapping="Wrap" Text="воскресенье" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="617,112,0,0" TextWrapping="Wrap" Text="среда" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16"/>
+        <DatePicker HorizontalAlignment="Left" Margin="131,61,0,0" VerticalAlignment="Top" Width="114" FontFamily="Century Gothic" BorderBrush="{x:Null}"/>
+        <TextBlock HorizontalAlignment="Left" FontFamily="Century Gothic" Margin="544,66,0,0" TextWrapping="Wrap" Text="Сформировать расписание в" VerticalAlignment="Top" Foreground="#FF646464" Height="34" Width="104"/>
+        <ListView x:Name="lvFriday" HorizontalAlignment="Left" Height="136" Margin="225,322,0,0" VerticalAlignment="Top" Width="164" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+
+                            <TextBlock   >Время</TextBlock>
+
+
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                                    <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                                </StackPanel>
+
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel>
+                                <TextBlock  >Работник</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                                    <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel >
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="ExcelBtn" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}"   Margin="744,63,12.333,379.667" Click="ExcelBtn_Click" FontSize="14" RenderTransformOrigin="0.5,0.5" Height="36">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Button.Background>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.459"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.214"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <StackPanel>
+                <Image Source="/ChanceryStore;component/images/exc.png" Height="17" Width="21" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Excel"/></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button x:Name="WordBtn_Copy" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}"  Margin="657,63,101.333,379.667" FontSize="14" Click="WordBtn_Click" Height="36">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Button.Background>
+            <StackPanel>
+                <Image Source="/ChanceryStore;component/images/word.png" Height="16" Width="23"/>
+                <TextBlock FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="Word"/></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button x:Name="PdfBtn_Copy" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}"   Margin="699,63,56.333,379.667" Click="PdfBtn_Click" FontSize="14" Height="36">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Button.Background>
+            <StackPanel>
+                <Image Source="/ChanceryStore;component/images/pdf.png" Height="19" Width="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontSize="9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="PDF"/></TextBlock>
+            </StackPanel>
+        </Button>
+        <ListView x:Name="lvSaturday" HorizontalAlignment="Left" Height="136" Margin="419,322,0,0" VerticalAlignment="Top" Width="157" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn   >
+                        <GridViewColumn.Header>
+
+                            <TextBlock   >Время</TextBlock>
+
+
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                                    <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                                </StackPanel>
+
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel>
+                                <TextBlock  >Работник</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                                    <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel >
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="lvThursday" HorizontalAlignment="Left" Height="136" Margin="36,319,0,0" VerticalAlignment="Top" Width="163" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn   >
+                        <GridViewColumn.Header>
+
+                            <TextBlock   >Время</TextBlock>
+
+
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                                    <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                                </StackPanel>
+
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel>
+                                <TextBlock  >Работник</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                                    <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel >
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="lvSunday" HorizontalAlignment="Left" Height="136" Margin="604,322,0,0" VerticalAlignment="Top" Width="159" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn   >
+                        <GridViewColumn.Header>
+
+                            <TextBlock   >Время</TextBlock>
+
+
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                                    <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                                </StackPanel>
+
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel>
+                                <TextBlock  >Работник</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                                    <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel >
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <ListView x:Name="lvMonday" HorizontalAlignment="Left" View="{StaticResource wer}" Height="136" Margin="36,136,0,0" VerticalAlignment="Top" Width="220" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        </ListView>
+
+        
+        
+        
+        <ListView x:Name="lvTuesday" HorizontalAlignment="Left" Height="136" Margin="291,139,0,0" VerticalAlignment="Top" Width="224" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn   >
+                        <GridViewColumn.Header>
+
+                            <TextBlock   >Время</TextBlock>
+
+
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                                    <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                                </StackPanel>
+
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel>
+                                <TextBlock  >Работник</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                                    <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel >
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="lvWednesday" HorizontalAlignment="Left" Height="136" Margin="547,139,0,0" VerticalAlignment="Top" Width="216" FontFamily="Century Gothic" Foreground="#FF535353" BorderBrush="{x:Null}" FontWeight="Bold" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn   >
+                        <GridViewColumn.Header>
+
+                            <TextBlock   >Время</TextBlock>
+
+
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock FontFamily="Century Gothic"  Text="с " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeStartView}" FontSize="13"/>
+                                    <TextBlock FontFamily="Century Gothic" Text=" до " FontSize="11"/>
+                                    <TextBlock FontFamily="Century Gothic"  Text="{Binding TimeEndView}" FontSize="13"/>
+                                </StackPanel>
+
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn>
+                        <GridViewColumn.Header>
+                            <StackPanel>
+                                <TextBlock  >Работник</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="White" Padding="2"  Margin="0,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFA0BAA3" >ФИО</TextBlock>
+                                    <TextBlock Foreground="White" Background="#FFA0BAA3" Margin="2,0,2,0" Padding="2" VerticalAlignment="Center">Должность</TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </GridViewColumn.Header>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding UsersOneTimeView}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel >
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontFamily="Century Gothic"  FontSize="12" Margin="9,0,9,0" Text="{Binding FirstName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding LastName}" Foreground="#FF7C7C7C" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="|" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    <TextBlock FontFamily="Century Gothic" FontSize="12" Margin="9,0,9,0" Text="{Binding Type.Name}" Foreground="#FF535353" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtnTue" Margin="0,115,342.333,343.667" Content="⤡" Tag="NotEdit"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtnWednesday" Margin="0,113,94.333,345.667" Content="⤡" Tag="NotEdit"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtnThursday" Margin="0,294,616.333,164.667" Content="⤡" Tag="NotEdit"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtnFriday" Margin="0,295,436.333,163.667" Content="⤡" Tag="NotEdit"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtnSaturday" Margin="0,296,253.333,162.667" Content="⤡" Tag="NotEdit"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+        <TextBlock HorizontalAlignment="Left" FontFamily="Century Gothic" Margin="19,64,0,0" TextWrapping="Wrap" Text="Начало недели с" VerticalAlignment="Top" Foreground="#FF484848" Height="34" Width="119"/>
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtn_Copy5" Margin="0,295,34.333,163.667" Content="⤡" Tag="NotEdit"  BorderBrush="{x:Null}"  Width="20" Height="20" Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" Panel.ZIndex="2" Click="MaximiseBtn_Click" />
+        <Button x:Name="RemoveBtn" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" Content="🗑️" FontSize="11" Margin="22,88,742.333,368.667" Height="22"  >
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="EmploymentBtn" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" Content="отметить занятость" FontSize="11" Margin="22,88,659.333,368.667" Height="22" Click="EmploymentBtn_Click"  >
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>

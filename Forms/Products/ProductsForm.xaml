@@ -1,0 +1,231 @@
+﻿<Window x:Name ="WindowProducts"  x:Class="ChanceryStore.ProductsForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore"
+        mc:Ignorable="d"
+        Title="Stationery" Height="471.333" Width="813"  Style="{DynamicResource backgroundStyle}" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="ToggleButton" x:Key="RadioLookToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <RadioButton IsChecked= "{TemplateBinding IsChecked}"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"  ></RadioButton>
+                            <Border Background="Transparent"></Border>
+                        </Grid>
+                        
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="40"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid >
+        <Menu    HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="793">
+            <Menu.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Menu.Background>
+            <MenuItem Name="mi1"  Height ="36" Width ="133" Margin="0,6,0,0"  BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" Background="{x:Null}"  >
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="134">
+                        <Ellipse x:Name="imageMainEl" Margin="5,0,0,0" Height="35" Width ="35">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="tropical-flowers-pattern-tekstura-fon-background-pattern-flo.jpg"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock x:Name="FirstNameMainTbl" Width="74" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Height="18"><Run Text="Анна"/></TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem  >
+            <MenuItem Name="mi2" Margin="0,6,0,0"  Height ="36" Width ="98" HorizontalContentAlignment="Center"  BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Header="Сотрудники"  />
+            <MenuItem Name="mi3"  Margin="0,6,0,0"  Header="Товары" Height ="36" Width ="70" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" Background="#FF749487" Foreground="White"/>
+            <MenuItem Name="mi4"  Margin="0,6,0,0" Header="Настройки" Height ="36" Width ="92" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic" />
+            <MenuItem Name="mi5" Margin="0,6,0,0"   Header="Расписание" Height ="36" Width ="103" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi6" Margin="0,6,0,0"   Header="Закупки" Height ="36" Width ="76" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem  Name="mi7" Margin="0,6,0,0"   Header="Заказы" Height ="36" Width ="71" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem Name="mi8"  Margin="0,6,0,0"  Header="Тесты" Height ="36" Width ="62" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+            <MenuItem  Margin="0,6,0,0"  Header="Выйти" Height ="36" Width ="59" BorderBrush ="#FF999999" BorderThickness ="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontFamily="Century Gothic"/>
+        </Menu>
+        <Rectangle Name="BackBlur" HorizontalAlignment="Left" Height="421" Margin="0,0,0,-0.333" VerticalAlignment="Top" Width="793" Panel.ZIndex="2" Visibility="Hidden">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+
+        <ListBox  x:Name="ProductsLb"  SelectedItem="{Binding SelectedProduct}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Margin="115,126,16.333,65.667" Background="{x:Null}" Panel.ZIndex="1" SelectionChanged="ProductsLb_SelectionChanged" BorderBrush="{x:Null}" FontFamily="Century Gothic"  >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid  Margin="0,0,0,5">
+                        <Rectangle Name="RectMain" Width="Auto" RadiusY="12" RadiusX="12">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="White" Opacity="0.7"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <StackPanel Name="SPMain" Margin="5" >
+                            <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="MaximiseBtn" Margin="5" Content="⤡" Tag="NotEdit" Click="EditProductBtn_Click"  BorderBrush="{x:Null}"  Width="20"  Background="#FFAAAAAA" Foreground="White" FontSize="14" HorizontalAlignment="Right" ></Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="◀" FontSize="20" Width="20" Height="25" Background="Transparent" BorderThickness="0" Foreground="gray"></Button>
+                                <Image Margin="7" Source="{Binding Path=Image}" Width="70" Height="70" Stretch="Fill"></Image>
+                                <Button Content="▶" FontSize="20"  Width="20" Height="25" Background="Transparent" BorderThickness="0" Foreground="gray"></Button>
+                            </StackPanel>
+                            <TextBlock Name="TBName" FontSize="14" HorizontalAlignment="Center" Text="{Binding Path=Name}"></TextBlock>
+                            <TextBlock Name="TBPrice" FontSize="12" HorizontalAlignment="Center">
+                            <Run FontSize="12" Text="{Binding Path=Price}"></Run>
+                            <Run FontSize="12" Text=" руб."></Run>
+                            </TextBlock>
+                            <TextBlock Name="TBAmount" FontSize="12" HorizontalAlignment="Center">
+                            <Run FontSize="12" Name="Run1" Text="в наличие "></Run>
+                            <Run FontSize="12" Name="Run2"  Text="{Binding Path=Amount}"></Run>
+                            <Run FontSize="12" Name="Run3"  Text=" шт."></Run>
+                            </TextBlock>
+                            <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" x:Name="AddArchieveBtn" Margin="5" Content="в архив" Tag="{Binding Path=Code}" Click="addArchieveBtn_Click" BorderBrush="{x:Null}" Width="60" Height="25" Background="#FF9CC4B1" Foreground="#FF483F3F" FontSize="12"></Button>
+                        </StackPanel>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Outdate}" Value="YES">
+                            <Setter TargetName="AddArchieveBtn" Property="Content" Value="восстановить из архива"></Setter>
+                            <Setter TargetName="AddArchieveBtn" Property="Width" Value="150"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Amount}" Value="0">
+
+                            <Setter TargetName="RectMain" Property="Fill" >
+                                <Setter.Value>
+                                    <SolidColorBrush Color="Gray"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="TBAmount" Property="Text" Value="Нет в наличие"></Setter>
+                            <Setter TargetName="TBAmount" Property="Foreground" Value="White"></Setter>
+                            <Setter TargetName="TBPrice" Property="Foreground" Value="White"></Setter>
+                            <Setter TargetName="TBName" Property="Foreground" Value="White"></Setter>
+                            <Setter TargetName="Run1" Property="Text" Value=""></Setter>
+                            <Setter TargetName="Run2" Property="Text" Value=""></Setter>
+                            <Setter TargetName="Run3" Property="Text" Value=""></Setter>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+        </ListBox>
+
+
+        <Button x:Name="AddProductBtn"  Width="94" Margin="128,389,579.333,15" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate2}" FontSize="14" Height="30" Click="AddProductBtn_Click" >+ добавить</Button>
+        <Button x:Name="RemoveProductBtn"  Width="94" Margin="233,389,474.333,15"  Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" FontSize="14" Height="30" Click="DeleteProductBtn_Click">🗑️ удалить</Button>
+        <ToggleButton  Margin="200,200,290,200" Style="{StaticResource RadioLookToggleButton}" Panel.ZIndex="23"/>
+
+        <Label Name="textPur" Content="" HorizontalAlignment="Left" Margin="564,365,0,0" VerticalAlignment="Top" FontSize="12" Foreground="#FF808B7C" Panel.ZIndex="1"/>
+        <Button x:Name="GoPurchaseBtn" Content="перейти" Margin="559,393,178.333,15" RenderTransformOrigin="0.6,0.6" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" FontSize="12" Click="GoPurchaseBtn_Click" Background="#FF84BFA3" Height="26" Width="64" Visibility="Hidden" />
+        <Button x:Name="SendPurchaseBtn" Content="отправить в закупку" Margin="636,391,20.333,13" Width="145" RenderTransformOrigin="0.6,0.6" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}" FontSize="14" Height="30" Click="SendPurchaseBtn_Click" />
+        <Label Content="🔍" HorizontalAlignment="Left" Margin="11,64,0,0" VerticalAlignment="Top" FontSize="14" Foreground="#FF808B7C" Height="30" Width="33" Panel.ZIndex="1"/>
+        <Button Content="Фильтр" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate2}" HorizontalAlignment="Left" Margin="156,69,0,0" VerticalAlignment="Top" Width="67" Height="18" FontSize="12" Click="Button_Click"/>
+        <Grid Name="GridFiltr"  Panel.ZIndex="3" Margin="155,88,328.667,218" Visibility="Visible" >
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "1" Content="Название" x:Name="NameRb" VerticalAlignment="Center"   Panel.ZIndex="2" Checked="RadioButton_Checked" Background="White" BorderBrush="#FF7CC480"  Margin="20,0,200,100" FontSize="11" />
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "2" Content="Поставщик" Name="loginRb"  VerticalAlignment="Center" Panel.ZIndex="2" Checked="RadioButton_Checked" BorderBrush="#FF7CC480" Margin="170,0,20,100" FontSize="11" />
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "3" Content="дешевле"  x:Name="PriceDownRb"  VerticalAlignment="Center"  Panel.ZIndex="2" BorderBrush="#FF7CC480" Margin="20,40,200,60" FontSize="11" Checked="PriceRb_Checked" />
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "3" Content="дороже"  x:Name="PriceUpRb"  VerticalAlignment="Center"  Panel.ZIndex="2" BorderBrush="#FF7CC480" Margin="20,60,200,28" FontSize="11" Checked="PriceRb_Checked" />
+            <TextBlock HorizontalAlignment="Left" Margin="32,38,0,0" TextWrapping="Wrap" Text="возраст" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="11" Foreground="#FF3D6B55" FontWeight="Bold"/>
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "3" Content="более новые"  x:Name="typeRb_Copy2"  VerticalAlignment="Center"  Panel.ZIndex="2" Checked="RadioButton_Checked" BorderBrush="#FF7CC480" Margin="113,50,77,70" FontSize="11" />
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "3" Content="более старые"  x:Name="typeRb_Copy3"  VerticalAlignment="Center"  Panel.ZIndex="2" Checked="RadioButton_Checked" BorderBrush="#FF7CC480"  Margin="113,76,77,44" FontSize="11" />
+            <TextBlock HorizontalAlignment="Left" Margin="186,40,0,0" TextWrapping="Wrap" Text="дата захода" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="11" Width="88" Foreground="#FF3D6B55" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="13,122,0,0" TextWrapping="Wrap" Text="категория" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="11" Width="60" Foreground="#FF3D6B55" FontWeight="Bold" Height="17"/>
+            <Border   Background="#FFD8F8E6"   CornerRadius="10" BorderBrush="#FFB6BBB6" BorderThickness="1" Margin="0,0,-19,0" />
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "3" Content="больше"  x:Name="typeRb_Copy"  VerticalAlignment="Center"  Panel.ZIndex="2" Checked="RadioButton_Checked" BorderBrush="#FF7CC480" Margin="241,50,-50,70" FontSize="11" />
+            <RadioButton Foreground="#FF3D6B55" FontFamily="Century Gothic" Style="{DynamicResource RadioButtonStyle1}" GroupName = "3" Content="меньше"  x:Name="typeRb_Copy1"  VerticalAlignment="Center"  Panel.ZIndex="2" Checked="RadioButton_Checked" BorderBrush="#FF7CC480"  Margin="241,76,-50,44" FontSize="11" />
+            <Label Foreground="#FF3D6B55" FontFamily="Century Gothic"   Content="количество"  x:Name="typeRb_Copy4"  VerticalAlignment="Center"  Panel.ZIndex="2"  BorderBrush="#FF7CC480" Margin="248,23,-55,92" FontSize="11" Height="21" />
+
+        </Grid>
+
+        <Button x:Name="actualBtn" Content="Актуальное" HorizontalAlignment="Left" Margin="128,112,0,0" VerticalAlignment="Top" Width="65" Style="{DynamicResource ButtonStyle3}" Background="#FF6EA78B" BorderBrush="{x:Null}" Foreground="White" Height="17" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+        <Button x:Name="outdateBtn" Content="Архив" HorizontalAlignment="Left" Margin="193,112,0,0" VerticalAlignment="Top" Width="45" Style="{DynamicResource ButtonStyle3}" Background="#FFBBE6D1" BorderBrush="{x:Null}" Foreground="#FF3D6B55" Height="17" FontFamily="Century Gothic" BorderThickness="0" FontSize="11" Click="archieveBtn_Click"/>
+        <Button x:Name="EditProductBtn"  Width="94" Margin="19,389,688.333,15" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate2}" FontSize="14" Height="30" Content="✏️ изменить" Tag="Edit"  Click="EditProductBtn_Click" />
+        <TextBox x:Name="SearchFieldTb" Padding="20,0,0,0" Style="{DynamicResource TextBoxStyle2}"  HorizontalAlignment="Left" Height="26" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" BorderBrush="{x:Null}" TextChanged="SearchFieldTb_TextChanged"/>
+
+        <TreeView HorizontalAlignment="Left" Height="231" Margin="0,134,0,0" VerticalAlignment="Top" Width="116" BorderBrush="{x:Null}" FontFamily="Century Gothic" Foreground="#FF2F2F2F">
+            <TreeView.Background>
+                <SolidColorBrush Color="White" Opacity="0.4"/>
+            </TreeView.Background>
+            <TreeViewItem Header="Все" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+            </TreeViewItem>
+
+            <TreeViewItem Header="Блокноты" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+                <TreeViewItem Foreground="#FF2B8B1C" Header="Ежедневники" Width="111" HorizontalAlignment="Left"  FlowDirection="RightToLeft" />
+                <TreeViewItem Foreground="#FF2B8B1C" Header="Для рисования" HorizontalAlignment="Left" FlowDirection="RightToLeft" Padding="1,0,0,0"/>
+                <TreeViewItem Foreground="#FF2B8B1C" Header="Для записей" HorizontalAlignment="Left" VerticalAlignment="Center" FlowDirection="RightToLeft"/>
+
+            </TreeViewItem>
+
+            <TreeViewItem Header="Ручки" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" ></SolidColorBrush>
+                </TreeViewItem.Background>
+                <TreeViewItem Header="Шариковые" HorizontalAlignment="Left" FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+                <TreeViewItem Header="Цветные" HorizontalAlignment="Left" FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+            </TreeViewItem>
+
+            <TreeViewItem Header="Наклейки" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+                <TreeViewItem Header="Объемные" HorizontalAlignment="Left"  FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+                <TreeViewItem Header="Виниловые" HorizontalAlignment="Left"  FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+                <TreeViewItem Header="Бумажные" HorizontalAlignment="Left"  FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Карандаши" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+
+            </TreeViewItem>
+            <TreeViewItem Header="Маркеры" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+            </TreeViewItem>
+
+            <TreeViewItem Header="Тетради" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+                <TreeViewItem Header="В клетку" HorizontalAlignment="Left"  FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+                <TreeViewItem Header="В линейку" HorizontalAlignment="Left"  FlowDirection="RightToLeft" Foreground="#FF2B8B1C"/>
+            </TreeViewItem>
+            <TreeViewItem Header="Линейки" FontFamily="Century Gothic" Foreground="#FF1A670E" Selected="TreeViewItem_Selected">
+                <TreeViewItem.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </TreeViewItem.Background>
+
+            </TreeViewItem>
+        </TreeView>
+        <TextBlock x:Name="MessageTbl"  TextWrapping="Wrap" Text="" Foreground="#FF3D6B55" Margin="178,92,140.333,309.667" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+    </Grid>
+</Window>

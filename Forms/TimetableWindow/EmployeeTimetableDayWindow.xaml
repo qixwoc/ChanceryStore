@@ -1,0 +1,28 @@
+﻿<Window x:Class="ChanceryStore.Forms.EmployeeTimetableDayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore.Forms"
+        mc:Ignorable="d"
+        Title="Занятость" Height="296.666" Width="448" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TextBlock x:Name="dayOfWeekLbl" HorizontalAlignment="Left" Margin="169,31,0,0" TextWrapping="Wrap" Text="понедельник" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="18"/>
+
+
+
+
+
+        <Button x:Name="EmploymentBtn" Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}"  Content="занят" HorizontalAlignment="Left" Margin="107,168,0,0" VerticalAlignment="Top" Width="96" Height="37" Click="EmploymentBtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="156,99,0,0" TextWrapping="Wrap" Text="с" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" Margin="222,99,0,0" TextWrapping="Wrap" Text="до" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="14"/>
+        <Button Style="{DynamicResource btnStyle}" Template="{DynamicResource btnTemplate2}"  Content="свободен" HorizontalAlignment="Left" Margin="253,166,0,0" VerticalAlignment="Top" Width="96" Height="37"/>
+        <TextBox x:Name="TimeStartTb" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="29" Height="27" Margin="181,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="Black"/>
+        <TextBox x:Name="TimeEndTb" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="30" Height="28" Margin="253,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="Black" TextChanged="TimeStartTb_TextChanged"/>
+        <DatePicker x:Name="selectDateDp" HorizontalAlignment="Left" Margin="177,56,0,0" VerticalAlignment="Top"/>
+
+
+
+
+    </Grid>
+</Window>

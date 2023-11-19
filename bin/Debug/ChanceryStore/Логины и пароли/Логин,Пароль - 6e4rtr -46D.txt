@@ -1,0 +1,3 @@
+Логин: qwer 
+Пароль: System.Byte[] 
+

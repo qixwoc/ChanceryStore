@@ -1,0 +1,110 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChanceryStore"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="ChanceryStore.AddUserForm"
+        mc:Ignorable="d"
+        Title="Добавить пользователя" Height="455" Width="547.382" Style="{DynamicResource backgroundMiniStyle}" WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <Style x:Key="labels">
+            <Setter Property="Control.FontFamily" Value="Century Gothic"/>
+        </Style>
+        <ControlTemplate x:Key="tbTemplate">
+            <Grid Width="Auto" Height="Auto" >
+                <Rectangle Fill="{TemplateBinding Background}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    Stroke="{TemplateBinding Background}" RadiusX="8" RadiusY="8"  />
+                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"  Content="{TemplateBinding TextBox.Text}"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid x:Name="gridTbs">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="151*"></RowDefinition>
+            <RowDefinition Height="274*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Margin="0,151,119.667,0.333" Grid.RowSpan="2" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel  Grid.Row="1" Grid.Column="0" Margin="0,3,0,0">
+                <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Имя" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="3,3,3,0" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+                <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Фамилия" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="3,3,3,0"  Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+                <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Логин" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="3,3,3,0"  Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+                <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Пароль" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="3,3,3,0"  FontFamily="Century Gothic" Foreground="#FF39795A" FontSize="12"/>
+                <Label Style="{DynamicResource lbl_Tblock_Style}" Content="Роль" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="3,3,3,0"  Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+                <TextBlock TextWrapping="Wrap" Text="Дата рождения" Style="{DynamicResource lbl_Tblock_Style}" FontSize="12" Margin="3,3,3,0"  Foreground="#FF39795A"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0,3,0,0" Grid.Row="1" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Margin="3" x:Name="firstNameTb" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="94" Height="21"  TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+                    <Label x:Name="firstNamePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="*" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="11" Visibility="Visible"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="lastNameTb" Margin="3" Style="{DynamicResource TextBoxStyle3}"  HorizontalAlignment="Left" Width="94" Height="21" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+                    <TextBlock x:Name="lastNamePromtLbl" TextWrapping="Wrap" Text="*" FontFamily="Century Gothic" FontSize="11" Width="71" Foreground="#FF509071" VerticalAlignment="Center" Padding="6,5,0,0"/>
+                </StackPanel>
+
+                <TextBox x:Name="loginTb" Margin="3" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="94" Height="21"  TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}"/>
+
+                <Grid Name="LoginMessageGrid"  Visibility="Collapsed" Width="200" >
+                    <Rectangle   Style="{DynamicResource RectMessageStyle}" HorizontalAlignment="Center"  Width="195" Height="60" />
+                    <TextBlock  Margin="3" Style="{DynamicResource lbl_Tblock_Style}" Text="Такой логин уже занят. Предложенные варианты:" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic" Width="158" Height="36" TextWrapping="Wrap"/>
+
+                    <StackPanel Margin="0,35,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Margin="3" x:Name="loginGeneratedLb1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Foreground="#FF509071" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14" MouseDown="loginGeneratedLb1_MouseDown_1"/>
+                        <TextBlock Margin="3" x:Name="loginGeneratedLb2" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Foreground="#FF509071" FontWeight="Bold" FontFamily="Century Gothic" FontSize="14" MouseDown="loginGeneratedLb2_MouseDown"/>
+                        <Button x:Name="repeatLoginBtn" Margin="3" Content="↻" Height="20" Width="20" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate}" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" Click="repeatLoginBtn_Click" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid  >
+                    <TextBox x:Name="passwordTb" Margin="3" Style="{DynamicResource TextBoxStyle3}"   HorizontalAlignment="Left" Width="94" Height="21"  TextWrapping="Wrap" VerticalAlignment="Top"  FontFamily="Century Gothic" FontSize="12" BorderBrush="{x:Null}" TextChanged="passwordTb_TextChanged"   />
+                    <PasswordBox Padding="0,0,25,0" Margin="3"  x:Name="passwordB"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="94" Height="21"   VerticalAlignment="Top"  Style="{DynamicResource PasswordBoxStyle1}" BorderBrush="{x:Null}" BorderThickness="0" FontFamily="Century Gothic" FontSize="10" SelectionBrush="#FF218F5D" Password="" PasswordChanged="passwordB_PasswordChanged"  />
+                    <Button x:Name="visibleBtn" Cursor="Hand" Style="{DynamicResource btnStyle}" Content="👁" Template="{DynamicResource btnTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="19" Height="17" FontSize="10" Click="visibleBtn_Click" Margin="76,5,105.667,5.333"></Button>
+
+                </Grid>
+
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="typeCb" Margin="4" HorizontalAlignment="Left"  VerticalAlignment="Top"  BorderBrush="{x:Null}" Width="94" Height="18" Background="White" Style="{DynamicResource ComboBoxStyle1}" FontFamily="Century Gothic"/>
+                    <Label x:Name="typePromtLbl" Style="{DynamicResource lbl_Tblock_Style}" Content="*" HorizontalAlignment="Left"  VerticalAlignment="Top"  FontSize="11" Visibility="Visible"/>
+                </StackPanel>
+                <DatePicker x:Name="dateOfBirthDp"  Margin="3" Style="{DynamicResource TextBoxStyle}" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="110" BorderBrush="{x:Null}" Height="26" FontSize="12" FontFamily="Century Gothic"/>
+                <Label x:Name="LoginMessageLabel" Style="{DynamicResource lbl_Tblock_Style}" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top"  FontSize="12"/>
+            </StackPanel>
+
+            <Button Margin="0,0,90.667,43" x:Name="okBtn" Style="{DynamicResource btnStyle}"  Template="{DynamicResource btnTemplate}" Content="✔ ок" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="110" Click="okBtn_Click" Height="31" FontSize="12" FontFamily="Century Gothic" Grid.Column="1" RenderTransformOrigin="0.5,0.511"/>
+
+        </Grid>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,119.667,0.333">
+            <Label Style="{DynamicResource lbl_Tblock_Style}" Content="* обязательное для заполнения поле" HorizontalAlignment="Center"  VerticalAlignment="Top" Foreground="#FF39795A" FontSize="12" FontFamily="Century Gothic"/>
+            <Ellipse Margin="3" x:Name="imageEllipse"  Stretch="UniformToFill" Width="90" >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/images/notImageUser.jpg" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Button x:Name="imageBtn" Style="{DynamicResource ButtonStyle2}" Content="выбрать изображение" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="152" Height="23" Click="imageBtn_Click" Background="#FFA8D9C1" Foreground="#FF3F512D" FontSize="12" FontFamily="Century Gothic" BorderBrush="{x:Null}"/>
+
+        </StackPanel>
+
+
+
+
+    </Grid>
+</Window>
